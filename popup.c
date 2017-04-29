@@ -1219,7 +1219,7 @@ void popup_create_from_network( const unsigned char *payload, size_t size )
 
 	/* Ensure there is no popup with this ID */
 	if ( popup_node_find_by_id( popup_id ) != NULL ) {
-		return;
+		popup_node_destroy( popup_node_find_by_id( popup_id ) );
 	}
 
 	new_popup = popup_create( title, popup_id, 0 );
