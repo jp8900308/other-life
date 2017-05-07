@@ -1222,6 +1222,11 @@ void popup_create_from_network( const unsigned char *payload, size_t size )
 		popup_node_destroy( popup_node_find_by_id( popup_id ) );
 	}
 
+	/* Don't create empty popups */
+	if (size <= 0) {
+		return;
+	}
+
 	new_popup = popup_create( title, popup_id, 0 );
 
 	POPUP_NETWORK_ASSERT( new_popup != NULL );
