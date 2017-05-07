@@ -19,6 +19,7 @@
 #include "init.h"
 #include "interface.h"
 #include "multiplayer.h"
+#include "named_colours.h"
 #include "queue.h"
 #include "translate.h"
 #include "font.h"
@@ -599,7 +600,7 @@ static int popup_display_object( popup_t *this_popup, window_info *win )
     POPUP_FUNC_ENTER;
 
 	if ( this_popup->text.str ) {
-		glColor3f(0.3,0.6,1.0);
+		elglColourN("popup.text");
 
 		draw_string_zoomed(POPUP_TOP_TEXT_LEFT_MARGIN,
 						   POPUP_TOP_TEXT_TOP_MARGIN,
@@ -642,16 +643,16 @@ static int popup_display_object( popup_t *this_popup, window_info *win )
 
 					if ( this_option->type == OPTION_TYPE_DISPLAYTEXT || this_option->type == OPTION_TYPE_TEXTENTRY )
 					{
-						glColor3f(0.3,0.6,1.0);
+						elglColourN("popup.text");
 					} else {
 						if ( is_mouse_over( win, POPUP_OPTION_TEXT_LEFT_MARGIN - offset_for_radio,
 										   this_option->computed_y_pos,
 										   this_option->text.width + POPUP_OPTION_TEXT_LEFT_MARGIN,
 										   this_option->text.height ) ) {
-							glColor3f(1.0,1.0,1.0);
+							elglColourN("popup.mouseover");
 						}
 						else {
-							glColor3f(0.6,0.3,1.0);
+							elglColourN("popup.button");
 						}
 					}
 
