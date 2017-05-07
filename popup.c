@@ -629,6 +629,7 @@ static int popup_display_object( popup_t *this_popup, window_info *win )
 					popup_option_t *this_option = POPUP_OPTION_NODE(this_option_node);
 
                     int offset_for_radio = 0;
+					int skip_color = 0;
 
 					/* hack - if we have a send button, demote text options to radio options */
 					if (this_popup->has_send_button && this_option->type == OPTION_TYPE_TEXTOPTION ) {
@@ -649,6 +650,8 @@ static int popup_display_object( popup_t *this_popup, window_info *win )
 										   this_option->computed_y_pos,
 										   this_option->text.width + POPUP_OPTION_TEXT_LEFT_MARGIN,
 										   this_option->text.height ) ) {
+							if (is_color(this_option->text.str[0]))
+								skip_color = 1;
 							elglColourN("popup.mouseover");
 						}
 						else {
@@ -666,7 +669,7 @@ static int popup_display_object( popup_t *this_popup, window_info *win )
 					} else {
 						draw_string_zoomed(POPUP_OPTION_TEXT_LEFT_MARGIN,
 										   this_option->computed_y_pos,
-										   (unsigned char*)this_option->text.str,
+										   (unsigned char*)this_option->text.str + skip_color,
 										   100,
 										   popup_font_zoom);
 					}
