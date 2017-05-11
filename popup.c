@@ -726,7 +726,7 @@ static void popup_recompute_sizes( popup_t *this_popup )
 
 	POPUP_FUNC_ENTER;
 
-	if ( this_popup->text.str ) {
+	if ( this_popup->text.str && this_popup->text.str[0] ) {
 		flowing_text_perform_flow(&this_popup->text,
 								  this_popup->width - (POPUP_TOP_TEXT_LEFT_MARGIN+POPUP_TOP_TEXT_RIGHT_MARGIN)
 								 );
